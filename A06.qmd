@@ -179,7 +179,16 @@ ie: 91 rounds to 90; 173 rounds to 200; 1450 rounds to 1000
 Hint: use `MARGIN = 1:2` to apply the function to each value instead of only a row/col.
 
 ```{r}
-
+rounding_num <- function(n) { #creates custom function that can be applied in apply function
+  if (nchar(n) == 2) {# 
+  return(round(n, -1)) # - so rounding will extend to integer place and not decimal place
+  } else if (nchar(n) == 3) {
+  return(round(n, -2)) 
+  } else if (nchar(n) == 4) { 
+  return(round(n, -3))}
+  }
+rounded_mat <- apply(mat_rand, 1:2, rounding_num)
+print(rounded_mat)
 ```
 
 
