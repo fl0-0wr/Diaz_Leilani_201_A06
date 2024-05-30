@@ -212,7 +212,9 @@ max_temps <- read_tsv("state_max_temps.tsv") |>
 Calculate the average temperature for each month across the whole data frame (using the data for all three states together).
 
 ```{r}
-
+max_temps_months <- max_temps[, -1:-2] #created new dataset which only includes the month columns
+apply(X = max_temps_months, MARGIN = 2, FUN = mean)
+#used apply function to calculate mean of each column of new dataset, aka the mean of each month
 ```
 
 
@@ -227,6 +229,10 @@ Create three new data frames by slicing the data by state.
 No need to print any output here.
 
 ```{r}
+co_data <- max_temps[max_temps$state == "CO", ]
+oh_data <- max_temps[max_temps$state == "OH", ]
+va_data <- max_temps[max_temps$state == "VA", ]
+# slixed the max_temps dataset three separate time to create three lists by state
 
 ```
 
@@ -248,7 +254,11 @@ Example (this is NOT the answer just an example of what goes in the {}):
 Note: This code should still run successfully even if the numbers were to change.
 
 ```{r}
-
+co_median_annual <- co_data[, -1:-2] # creates a new dataset which included only the month data, gets rid of year and state columns
+co_median <- apply(X = co_median_annual, MARGIN = 1, FUN = median) # uses apply function to create vector which only includes median value of each row, aka each year since row = year
+h <- which.max(co_median) # uses which.max and which.min to save index position of co_median to variables h and l
+l <- which.min(co_median)
+print(paste0("The maximum meidan annual temperature of ", co_median[h], " occured in ", co_data$year[h], " and the minimum median annual temperature of ", co_median[l], " occured in ", co_data$year[l], ".")) #uses index position saved with h and l to index co_median vector and co_data dataset, with the latter being indexed according to year column
 ```
 
 
