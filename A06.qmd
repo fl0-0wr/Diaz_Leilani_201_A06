@@ -48,7 +48,7 @@ To get full credit for this Question you must:
 
 ## Github Repo Link
 
-[https://your-github-repo-url](https://your-github-repo-url)
+[https://github.com/fl0-0wr/Diaz_Leilani_201_A06.git](https://github.com/fl0-0wr/Diaz_Leilani_201_A06.git)
 
 :::
 
@@ -258,7 +258,7 @@ co_median_annual <- co_data[, -1:-2] # creates a new dataset which included only
 co_median <- apply(X = co_median_annual, MARGIN = 1, FUN = median) # uses apply function to create vector which only includes median value of each row, aka each year since row = year
 h <- which.max(co_median) # uses which.max and which.min to save index position of co_median to variables h and l
 l <- which.min(co_median)
-print(paste0("The maximum meidan annual temperature of ", co_median[h], " occured in ", co_data$year[h], " and the minimum median annual temperature of ", co_median[l], " occured in ", co_data$year[l], ".")) #uses index position saved with h and l to index co_median vector and co_data dataset, with the latter being indexed according to year column
+print(paste0("The maximum median annual temperature of ", co_median[h], " occured in ", co_data$year[h], " and the minimum median annual temperature of ", co_median[l], " occured in ", co_data$year[l], ".")) #uses index position saved with h and l to index co_median vector and co_data dataset, with the latter being indexed according to year column
 ```
 
 
@@ -271,6 +271,13 @@ Example: The number 312 would return 6 (3 + 1 + 2)
 Run your function with 935068.
 
 ```{r}
-
+sum_digits <- function(j) {
+if (j < 10) { # if input is less than 10, sum is itself
+return (j)
+} else {
+return(j %% 10 + sum_digits(j %/% 10)) # first part returns remainder of input divided by 10, which is the last digit of the input, second part recursively calls remainder of input through j %/% 10, which returns the quotient; goes through each digit in input this way and adds them all
+  }
+}
+sum_digits(935068)
 ```
 
